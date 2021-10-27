@@ -1,29 +1,24 @@
 import React, { Component } from 'react'
+import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from '../../redux/actions/count'
 
 export default class Count extends Component {
-    state = { num: 0 }
-
-    increment = () => {
-        const { num } = this.state
+    dispatch = this.props.store.dispatch
+    increment = (event) => {
         const { value } = this.numberNode
-        this.setState({num: num + value * 1})
+        this.dispatch(createIncrementAction(value * 1))
     }
     decrement = () => {
-        const { num } = this.state
         const { value } = this.numberNode
-        this.setState({num: num - value * 1})
+        this.dispatch(createDecrementAction(value * 1))
     }
     incrementAsync = () => {
-        const { num } = this.state
         const { value } = this.numberNode
-        setTimeout(() => {
-            this.setState({num: num + value * 1})
-        }, 500);
+        this.dispatch(createIncrementAsyncAction(value * 1, 500))
     }
     render() {
         return (
             <>
-                <h2>计算结果：{this.state.num}</h2>
+                <h2>计算结果：{this.props.store.getState()}</h2>
                 <select ref={c => this.numberNode = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
