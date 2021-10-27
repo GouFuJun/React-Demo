@@ -18,7 +18,7 @@ class Count extends Component {
     }
     incrementAsync = () => {
         const { value } = this.numberNode
-        this.props.incrementAsync(value * 1)
+        this.props.incrementAsync(value * 1, 500)
     }
     render() {
         return (
@@ -38,12 +38,12 @@ class Count extends Component {
 }
 
 
-const mapStateToProps = state => ({num: state})
+const mapStateToProps = state => ({num: state.count})
 
 const mapDispatchToProps = {
     increment: createIncrementAction,
     decrement: createDecrementAction,
-    incrementAsync:createIncrementAsyncAction
+    incrementAsync: createIncrementAsyncAction
 }
 // react-redux 创建的容器组件
 export default connect(mapStateToProps, mapDispatchToProps)(Count)

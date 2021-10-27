@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import Count from "./components/count"
+import Person from "./components/person"
 
-import store from './redux/index'
 export default class App extends Component {
     render() {
-        return <Count store={store}/>
+        return (
+            <>
+                <Count/>
+                <hr/>
+                <Person/>
+            </>
+        )
     }
 }
